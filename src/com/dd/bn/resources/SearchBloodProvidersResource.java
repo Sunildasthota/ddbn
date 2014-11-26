@@ -21,8 +21,8 @@ import com.dd.bn.pojo.common.BloodNetworkUser;
 
 
 @Path("search")
-@Consumes({MediaType.APPLICATION_JSON})
-@Produces({MediaType.APPLICATION_JSON})
+@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 public class SearchBloodProvidersResource {
 
 	private static final String PHONE_NUMBER="phoneNumber";

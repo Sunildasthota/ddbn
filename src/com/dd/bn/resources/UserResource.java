@@ -20,8 +20,8 @@ import com.dd.bn.pojo.common.BaseMessage;
 import com.dd.bn.pojo.common.BloodNetworkUser;
 
 @Path("/user")
-@Consumes({MediaType.APPLICATION_JSON})
-@Produces({MediaType.APPLICATION_JSON})
+@Consumes({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
+@Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
 public class UserResource {
 	
 	@POST

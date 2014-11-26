@@ -27,8 +27,7 @@ import static com.dd.bn.constants.BloodNetworkConstants.EMAIL;
 import static com.dd.bn.constants.BloodNetworkConstants.FIRST_NAME;
 import static com.dd.bn.constants.BloodNetworkConstants.INITIAL_BLOOD_RATING;
 import static com.dd.bn.constants.BloodNetworkConstants.LAST_NAME;
-import static com.dd.bn.constants.BloodNetworkConstants.LATITUDE;
-import static com.dd.bn.constants.BloodNetworkConstants.LONGITUDE;
+
 import static com.dd.bn.constants.BloodNetworkConstants.LOCATION;
 import static com.dd.bn.constants.BloodNetworkConstants.PHONE_NUMBER;
 
@@ -84,11 +83,10 @@ public final class MongoDBInstance {
     	bloodNetworkUser.setEmail(nearestPerson.get(EMAIL).toString());
     	bloodNetworkUser.setFirstName(nearestPerson.get(FIRST_NAME).toString());
     	bloodNetworkUser.setLastName(nearestPerson.get(LAST_NAME).toString());
-    	System.out.println("Location:"+nearestPerson.get(LOCATION));
-    	if(nearestPerson.get(LATITUDE)!=null)
-    		bloodNetworkUser.setLatitude(Double.valueOf(nearestPerson.get(LATITUDE).toString()));
-    	if(nearestPerson.get(LONGITUDE)!=null)
-    		bloodNetworkUser.setLongitude(Double.valueOf(nearestPerson.get(LONGITUDE).toString()));
+    	BasicDBObject	location	=	(BasicDBObject)nearestPerson.get(LOCATION);
+    	BasicDBList		coordinates	=	(BasicDBList)location.get(COORDINATES);
+    	bloodNetworkUser.setLatitude(Double.valueOf(coordinates.get(0).toString()));
+    	bloodNetworkUser.setLongitude(Double.valueOf(coordinates.get(1).toString()));
     	bloodNetworkUser.setPhoneNumber(nearestPerson.get(PHONE_NUMBER).toString());
     	bloodNetworkUser.setRating(nearestPerson.get(RATING).toString());
 		return bloodNetworkUser;

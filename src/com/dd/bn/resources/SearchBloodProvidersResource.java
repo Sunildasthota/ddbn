@@ -18,14 +18,14 @@ import com.dd.bn.pojo.common.BNSearchResponse;
 import com.dd.bn.pojo.common.BNSearchResponseMessage;
 import com.dd.bn.pojo.common.BaseMessage;
 import com.dd.bn.pojo.common.BloodNetworkUser;
-
+import static com.dd.bn.constants.BloodNetworkConstants.PHONE_NUMBER;
 
 @Path("search")
 @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 public class SearchBloodProvidersResource {
 
-	private static final String PHONE_NUMBER="phoneNumber";
+	
 	@GET
 	public Response searchUsersForBloodType(@QueryParam(PHONE_NUMBER) String phoneNumber ){
 	

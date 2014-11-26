@@ -92,7 +92,10 @@ public final class MongoDBInstance {
 		return bloodNetworkUser;
 	}
 
-
+    public BloodNetworkUser	getUserInformation(String phoneNumber){
+    	DBObject	bloodNetworkUser	=	getUser(phoneNumber);
+    	return populateObjectFromMongoDB(bloodNetworkUser);
+    }
 	public DBObject getUser(String phoneNumber) {
     	DBObject	myDoc = getCollection().findOne(new BasicDBObject(PHONE_NUMBER,phoneNumber));
     	return myDoc;

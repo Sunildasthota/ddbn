@@ -41,6 +41,9 @@ public class BloodNetworkRegistrationHelper {
 		System.out.println("User cooordinates:"+userCoordinates.get(1));
 		return dbinstance.getNearByUsers(userCoordinates, 20000, phoneNumber, bloodGroup);
 	}
+	public BloodNetworkUser getUserInformation(String phoneNumber){
+		return dbinstance.getUserInformation(phoneNumber);
+	}
 	public static void main(String x[]) throws Exception{
 
 		BloodNetworkRegistrationHelper	helper =	new BloodNetworkRegistrationHelper();

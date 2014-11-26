@@ -2,7 +2,8 @@ package com.dd.bn.constants;
 
 
 public class BloodNetworkConstants {
-
+	
+	
 	public static final String BLOOD_NETWORK_COLLECTION	=	"bloodNetWorkUsersCollection";
     public static final String BLOOD_NETWORK_DB	=	"bloodNetworkDB";
 	public static final String PHONE_NUMBER	=	"phoneNumber";

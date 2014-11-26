@@ -29,7 +29,7 @@ public class BloodNetworkRegistrationHelper {
 			System.out.println("Latitude and longitude conversion:"+latlong[0]+"::"+latlong[1]);
 		}
 		dbinstance.insertUser(bloodNetworkUser);
-		return false;
+		return true;
 	}
 	public List<BloodNetworkUser> getNearByUsers(String phoneNumber){
 		DBObject	user	=	dbinstance.getUser(phoneNumber);

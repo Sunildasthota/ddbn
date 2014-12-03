@@ -15,7 +15,10 @@ import com.mongodb.DBObject;
 import com.mongodb.BasicDBObject;
 import com.mongodb.MongoClient;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import static com.dd.bn.constants.BloodNetworkConstants.BLOOD_NETWORK_COLLECTION;
 import static com.dd.bn.constants.BloodNetworkConstants.BLOOD_NETWORK_DB;
 import static com.dd.bn.constants.BloodNetworkConstants.TYPE;
@@ -48,7 +51,24 @@ public final class MongoDBInstance {
         getCollection().createIndex(new BasicDBObject(LOCATION, "2dsphere"));
     }
     
-    
+    public Map<String, String> getBloodGroupsForMultiplePhoneNumbers(List<String> phoneNumbersList){
+    	
+    	BasicDBList or = new BasicDBList();
+    	
+    	for(String phoneNumber:phoneNumbersList){
+    		DBObject	phoneNumberQuery	=	new BasicDBObject(PHONE_NUMBER,new BasicDBObject("$eq",phoneNumber));
+    		or.add(phoneNumberQuery);
+    	}
+    	
+    	DBObject query = new BasicDBObject("$or", or);
+		DBCursor	results	=	getCollection().find(query);
+		Map<String, String> phoneNumberToBloodGroupMapping	=	new HashMap<String, String>(phoneNumbersList.size());
+		for(DBObject	phoneContact	:	results){
+			phoneNumberToBloodGroupMapping.put(phoneContact.get(PHONE_NUMBER).toString(),phoneContact.get(BLOOD_GROUP).toString());	
+		}
+		System.out.println("Phone To Blood Group mapping:"+phoneNumberToBloodGroupMapping);
+		return phoneNumberToBloodGroupMapping;
+    }
        
     public List<BloodNetworkUser> getNearByUsers(BasicDBList centerOfTheCircle, double radius, String phoneNumber, String bloodGroup) {
 

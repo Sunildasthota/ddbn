@@ -3,6 +3,7 @@ package com.dd.bn.helper;
 
 
 import java.util.List;
+import java.util.Map;
 
 import com.dd.bn.constants.BloodNetworkConstants;
 import com.dd.bn.mongodb.MongoDBInstance;
@@ -12,10 +13,10 @@ import com.mongodb.BasicDBList;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
 
-public class BloodNetworkRegistrationHelper {
+public class BloodNetworkHelper {
 
 	private MongoDBInstance dbinstance;
-	public BloodNetworkRegistrationHelper() throws Exception{
+	public BloodNetworkHelper() throws Exception{
 		dbinstance	=	new MongoDBInstance();
 	}
 	public boolean createUser(BloodNetworkUser bloodNetworkUser) throws Exception {
@@ -44,9 +45,12 @@ public class BloodNetworkRegistrationHelper {
 	public BloodNetworkUser getUserInformation(String phoneNumber){
 		return dbinstance.getUserInformation(phoneNumber);
 	}
+	public Map<String, String> getBloodGroupsForContacts(List<String> phoneNumbersList){
+		return dbinstance.getBloodGroupsForMultiplePhoneNumbers(phoneNumbersList);
+	}
 	public static void main(String x[]) throws Exception{
 
-		BloodNetworkRegistrationHelper	helper =	new BloodNetworkRegistrationHelper();
+		BloodNetworkHelper	helper =	new BloodNetworkHelper();
 //		
 //		BloodNetworkUser	user	=	new BloodNetworkUser();
 //		user.setAddress("Carnegie PA");

@@ -14,7 +14,7 @@ import javax.ws.rs.core.Response.Status;
 
 
 
-import com.dd.bn.helper.BloodNetworkRegistrationHelper;
+import com.dd.bn.helper.BloodNetworkHelper;
 import com.dd.bn.pojo.common.BNCreateResponse;
 import com.dd.bn.pojo.common.BNCreateResponseMessage;
 import com.dd.bn.pojo.common.BNUserResponseMessage;
@@ -34,10 +34,10 @@ public class UserResource {
 		System.out.println("Sunil Request:"+bloodNetworkUser);
 		ResponseBuilder builder	=	null;
 		BNCreateResponseMessage	response	=	createDummyCreateResponse();
-		BloodNetworkRegistrationHelper bloodNetworkHelper;
+		BloodNetworkHelper bloodNetworkHelper;
 		boolean success = false;
 		try {
-			bloodNetworkHelper = new BloodNetworkRegistrationHelper();
+			bloodNetworkHelper = new BloodNetworkHelper();
 			success = bloodNetworkHelper.createUser(bloodNetworkUser);
 			response.getBaseMessage().setReturnCode(Status.OK.getStatusCode());
 			response.getBaseMessage().setReturnCodeDescription("OK");
@@ -58,10 +58,10 @@ public class UserResource {
 		System.out.println("Sunil getUser:"+phoneNumber);
 		ResponseBuilder builder	=	null;
 		BNUserResponseMessage	response	=	createDummyUserResponse();
-		BloodNetworkRegistrationHelper bloodNetworkHelper;
+		BloodNetworkHelper bloodNetworkHelper;
 		BloodNetworkUser	bloodNetworkUser	=	null;
 		try {
-			bloodNetworkHelper = new BloodNetworkRegistrationHelper();
+			bloodNetworkHelper = new BloodNetworkHelper();
 			bloodNetworkUser	=	bloodNetworkHelper.getUserInformation(phoneNumber);
 			response.getBaseMessage().setReturnCode(Status.OK.getStatusCode());
 			response.getBaseMessage().setReturnCodeDescription("OK");

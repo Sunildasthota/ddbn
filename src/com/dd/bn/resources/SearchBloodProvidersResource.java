@@ -12,7 +12,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.ResponseBuilder;
 import javax.ws.rs.core.Response.Status;
 
-import com.dd.bn.helper.BloodNetworkRegistrationHelper;
+import com.dd.bn.helper.BloodNetworkHelper;
 
 import com.dd.bn.pojo.common.BNSearchResponse;
 import com.dd.bn.pojo.common.BNSearchResponseMessage;
@@ -31,10 +31,10 @@ public class SearchBloodProvidersResource {
 	
 		ResponseBuilder builder	=	null;
 		BNSearchResponseMessage	searchResponse	=	createDummySearchResponse();
-		BloodNetworkRegistrationHelper bloodNetworkHelper;
+		BloodNetworkHelper bloodNetworkHelper;
 		
 		try {
-			bloodNetworkHelper = new BloodNetworkRegistrationHelper();
+			bloodNetworkHelper = new BloodNetworkHelper();
 			List<BloodNetworkUser>	nearByUsers	=	bloodNetworkHelper.getNearByUsers(phoneNumber);
 			if(nearByUsers!=null	&&	 nearByUsers.size()>0){
 				searchResponse.getPayload().setResponse(nearByUsers);
